@@ -5,28 +5,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import pl.arturkb.openbooks.logger.ExtraLogger;
-
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main extends Application {
-
-    /** */
-    private static final Logger LOGGER = Logger.getLogger(Application.class.getName());
+    Logger logger = LoggerFactory.getLogger(Main.class);
 
     @Override
     public void init() throws Exception {
-        try {
-            ExtraLogger.setup();
-            LOGGER.setLevel(Level.ALL);
-            LOGGER.info("Initializing logging");
-            LOGGER.info("Starting application");
-        } catch (IOException exception) {
-            exception.printStackTrace();
-            throw new RuntimeException("Problems with creating the log files");
-        }
+        logger.info("Staring application");
     }
 
     @Override
@@ -39,7 +26,7 @@ public class Main extends Application {
 
     @Override
     public void stop() throws Exception {
-        LOGGER.info("Stopping application");
+        logger.info("Stopping application");
     }
 
 
